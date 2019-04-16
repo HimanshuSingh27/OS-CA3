@@ -12,15 +12,21 @@ int main()
  	printf("\nEnter position of current disk\t");
  	scanf("%d",&current);
  	printf("\nEnter elements of disk queue\n");
- 	int i,temp,j;
+ 	int i,temp,j,loc;
  	for(i=0;i<n;i++) // Input elements
 	{
 	printf("\nEnter element %d\n",i+1);
  	scanf("%d",&queue[i]);
  	}
- 	queue[n]=current;
+ 	
+	 
+	 queue[n]=current;//enter current location in the queue
  	n=n+1;
- 	for(i=0;i<n;i++)    // Sorting disk 
+ 	queue[n]=last;//enter last location in the queue
+ 	n=n+1;
+ 	
+ 	
+	 for(i=0;i<n;i++)    // Sorting disk 
  	{
   		for(j=i;j<n;j++)
   			{
@@ -32,6 +38,26 @@ int main()
     			}
   			}
  	}
+ 	for(i=0;i<n;i++)   // To find loc of disc in array
+ 		{
+			 if(current==queue[i]) 
+			 { loc=i; break;  }
+ 		}
+ 		
+ 	//To print sequence	
+ 	for(i=loc;i<n-1;i++)
+ 		{
+			printf("%d-->",queue[i]);
+ 		}
+ 		printf("4999");
+ 	for(i=loc-1;i>=0;i--)
+ 		{
+ 			 printf(" -->%d",queue[i]);
+ 		}
+
+
+ 
+
  	int first= queue[0];
  	
  	for(i=0;i<n;i++) 
@@ -53,4 +79,3 @@ int main()
  	printf(" \n\n\nTotal movements required %d",move);
  	getch();
 }
-
