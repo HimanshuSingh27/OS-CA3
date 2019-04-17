@@ -28,4 +28,18 @@ int main()
 			scanf("%d",&priorityArray[p]); 
  	 
       } 
+      for(p=0;p<lim;p++) 
+      {           
+	  		int j; 
+            for( j=p+1;j<lim;j++) 
+            { 
+                  int swap=priorityArray[p];                   
+				  priorityArray[p]=priorityArray[j];                   
+				  priorityArray[j]=swap; 
+              } 
+              tempBurst[p]=burstTime[p]; 
+        } 
+        printf("\nEnter Time Quantum for the process:\t");       
+		scanf("%d", &timeQuantum);       
+		printf("\nProcess__ID\t\tArrival__Time\tBurst__Time\t TurnAround__Time\t Waiting__Time\n");       
 }
