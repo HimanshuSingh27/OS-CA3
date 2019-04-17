@@ -42,4 +42,52 @@ int main()
         printf("\nEnter Time Quantum for the process:\t");       
 		scanf("%d", &timeQuantum);       
 		printf("\nProcess__ID\t\tArrival__Time\tBurst__Time\t TurnAround__Time\t Waiting__Time\n");       
+		for(total_t = 0, p = 0; x != 0;) 
+      { 
+            if(tempBurst[p] <= timeQuantum && tempBurst[p] > 0) //time on every preemption 
+            { 
+                  total_t = total_t + tempBurst[p];                   
+				  tempBurst[p] = 0;                   
+				  counter_c = 1; 
+            } 
+            else if(tempBurst[p] > 0)  
+            { 
+                  tempBurst[p] = tempBurst[p] - timeQuantum;                   
+				  total_t = total_t + timeQuantum; 
+            } 
+            if(tempBurst[p] == 0 && counter_c == 1) 
+            {                   
+					x--; 
+                    turnAroundTime=total_t-arrivalTime[p];                   
+					waitingTime=turnAroundTime-burstTime[p];                   
+					if(turnAroundTime<0) 
+                		{ 
+                          turnAroundTime=0; 
+                  		}                           
+					if(waitingTime<0) 
+                		{                           
+						 waitingTime=0; 
+                  		} 
+                printf("\nProcess[%d]\t\t%d\t\t%d\t\t %d\t\t\t %d", p + 1,arrivalTime[p], burstTime[p], turnAroundTime, waitingTime); 	 
+                  turnAroundTime=turnAroundTime+total_t-arrivalTime[p];                   
+				  waitingTime=waitingTime+total_t-arrivalTime[p]-burstTime[p];                   
+				  if(waitingTime<0) 
+                 		{                                
+						 waitingTime=0; 
+                 		} 
+                          counter_c = 0; 
+            } 
+            if(p == lim - 1) 
+            {                   
+				p = 0; 
+            } 
+            else if(arrivalTime[p + 1] <= total_t) //process in queue 
+            {                   
+				p++; 
+            }             
+			else             
+			{                   
+				p = 0; 
+            } 
+      } 
 }
