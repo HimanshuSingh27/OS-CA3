@@ -90,4 +90,9 @@ int main()
 				p = 0; 
             } 
       } 
-}
+      avg_WaitingTime = waitingTime * 1.0 / lim; 
+      avg_TurnAroundTime = turnAroundTime * 1.0 / lim;       
+	  printf("\n\nAverage__Waiting__Time:\t%0.2f", avg_WaitingTime);       
+	  printf("\nAvg__Turnaround__Time:\t%0.2f\n", avg_TurnAroundTime);       
+	  return 0; 
+} 
